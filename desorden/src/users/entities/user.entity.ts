@@ -7,6 +7,7 @@ import {
   PrimaryColumn,
 } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
+import * as bcrypt from 'bcrypt';
 @Entity({
   name: 'UserSchema',
 })
@@ -31,10 +32,13 @@ export class User extends BaseEntity {
     return `${this.firstName} ${this.lastName}`;
   }
 
-  Transf;
-
   @BeforeInsert()
   async addId() {
     this.id = await uuidV4();
+  }
+
+  @BeforeInsert()
+  async hashPassword() {
+    this.password = await bcrypt.hashSync(this.password, 10);
   }
 }

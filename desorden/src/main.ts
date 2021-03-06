@@ -4,12 +4,19 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { TypeORMConnOptions } from './database.provider';
-import 'dotenv/config';
 import { ValidationPipe } from '@nestjs/common';
 import { useContainer } from 'typeorm';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
+import 'dotenv/config';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    new FastifyAdapter({ logger: true }),
+  );
   app.enableCors();
   app.useGlobalPipes(
     new ValidationPipe({
@@ -21,7 +28,7 @@ async function bootstrap() {
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
-  await app.listen(process.env.PORT);
+  await app.listen(process.env.PORT, '0.0.0.0');
 
   if (module.hot) {
     module.hot.accept();

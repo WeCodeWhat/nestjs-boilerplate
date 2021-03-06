@@ -4,7 +4,6 @@ import { isEnvironment } from './env.validation';
 
 const genORMOptions = async (): Promise<ConnectionOptions> => {
   let TypeORMConnOptions = await getConnectionOptions();
-  console.log(TypeORMConnOptions);
   Object.assign<ConnectionOptions, Partial<ConnectionOptions>>(
     TypeORMConnOptions,
     {
@@ -16,9 +15,6 @@ const genORMOptions = async (): Promise<ConnectionOptions> => {
       dropSchema: isEnvironment(Environment.TEST),
     },
   );
-
-  console.log(TypeORMConnOptions);
-
   return TypeORMConnOptions;
 };
 
