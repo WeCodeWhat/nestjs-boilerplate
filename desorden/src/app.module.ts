@@ -2,6 +2,7 @@ import { Module, NestModule, RequestMethod } from '@nestjs/common';
 import { MiddlewareConsumer } from '@nestjs/common/interfaces';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
+import { validate } from './helpers/env.validation';
 
 @Module({
   imports: [
@@ -9,6 +10,7 @@ import { ConfigModule } from '@nestjs/config';
     ConfigModule.forRoot({
       isGlobal: true,
       ignoreEnvFile: true,
+      validate,
     }),
   ],
 })

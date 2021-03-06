@@ -1,3 +1,5 @@
+import { IsEmail } from 'class-validator';
+import { DTOErrorMessage } from 'src/constants/dto-error-message';
 import {
   Entity,
   Column,
@@ -13,6 +15,14 @@ export class User extends BaseEntity {
   @PrimaryColumn()
   id: string;
 
+  @IsEmail(
+    {
+      ignore_max_length: true,
+    },
+    {
+      message: DTOErrorMessage.emailFormat,
+    },
+  )
   @Column({ nullable: false, unique: true, type: 'text' })
   email: string;
 

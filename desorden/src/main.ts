@@ -8,7 +8,7 @@ import 'dotenv/config';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  await app.listen(process.env.PORT ?? 8000);
+  await app.listen(process.env.PORT);
 
   if (module.hot) {
     module.hot.accept();
@@ -16,7 +16,7 @@ async function bootstrap() {
   }
 
   console.table({
-    PORT: process.env.PORT ?? 8000,
+    PORT: process.env.PORT,
     ENVIRONMENT: process.env.NODE_ENV.trim(),
     DATABASE: (await TypeORMConnOptions).database,
   });
