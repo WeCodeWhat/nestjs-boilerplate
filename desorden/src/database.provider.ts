@@ -9,3 +9,5 @@ export const databaseProviders = [
     useFactory: async () => await createConnection(await TypeORMConnOptions),
   },
 ];
+
+export { TypeORMConnOptions };

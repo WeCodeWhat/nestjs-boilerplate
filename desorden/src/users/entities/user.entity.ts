@@ -1,17 +1,17 @@
 import {
   Entity,
   Column,
-  PrimaryGeneratedColumn,
   BeforeInsert,
   BaseEntity,
+  PrimaryColumn,
 } from 'typeorm';
 import { v4 as uuidV4 } from 'uuid';
 @Entity({
   name: 'UserSchema',
 })
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryColumn()
+  id: string;
 
   @Column({ nullable: false, unique: true, type: 'text' })
   email: string;

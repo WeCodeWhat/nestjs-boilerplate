@@ -13,18 +13,18 @@ export class UsersService {
   ) {}
 
   create = async (createUserDto: CreateUserDto): Promise<User> =>
-    await this.userRepository.create(createUserDto);
+    await this.userRepository.create(createUserDto).save();
 
   findAll = async (): Promise<User[]> => await this.userRepository.find();
 
   findOne = async (id: number): Promise<User> =>
     await this.userRepository.findOne({ where: { id } });
 
-  update = async (id: number, updateUserDto: UpdateUserDto) => {
+  update = async (id: string, updateUserDto: UpdateUserDto) => {
     await this.userRepository.update({ id }, updateUserDto);
   };
 
-  remove = async (id: number) => {
+  remove = async (id: string) => {
     await this.userRepository.delete({
       id,
     });

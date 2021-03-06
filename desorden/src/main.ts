@@ -2,7 +2,8 @@ declare const module: any;
 
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { AppModule, TypeORMConnOptions } from './app.module';
+import { AppModule } from './app.module';
+import { TypeORMConnOptions } from './database.provider';
 import 'dotenv/config';
 
 async function bootstrap() {

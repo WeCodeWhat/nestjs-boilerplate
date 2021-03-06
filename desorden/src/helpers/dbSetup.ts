@@ -3,6 +3,7 @@ import { getConnectionOptions, ConnectionOptions } from 'typeorm';
 
 const genORMOptions = async (): Promise<ConnectionOptions> => {
   let TypeORMConnOptions = await getConnectionOptions();
+  console.log(TypeORMConnOptions);
   Object.assign<ConnectionOptions, Partial<ConnectionOptions>>(
     TypeORMConnOptions,
     {
@@ -10,10 +11,12 @@ const genORMOptions = async (): Promise<ConnectionOptions> => {
       password: process.env.DATABASE_PASSWORD,
       database:
         TypeORMConnOptions.database +
-        (isEnvironment(Environment.TEST) ? Environment.TEST : ''),
+        (isEnvironment(Environment.TEST) ? `-${Environment.TEST}` : ''),
       dropSchema: isEnvironment(Environment.TEST),
     },
   );
+
+  console.log(TypeORMConnOptions);
 
   return TypeORMConnOptions;
 };
