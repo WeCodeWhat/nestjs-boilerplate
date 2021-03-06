@@ -1,4 +1,11 @@
-import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 import { DTOErrorMessage } from 'src/constants/dto-error-message';
 
 export class CreateUserDto {
@@ -20,4 +27,16 @@ export class CreateUserDto {
     message: DTOErrorMessage.passwordMaxLengthExceed,
   })
   readonly password: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(1)
+  @MaxLength(100)
+  readonly firstName: string;
+
+  @IsString()
+  @IsOptional()
+  @MinLength(1)
+  @MaxLength(100)
+  readonly lastName: string;
 }
