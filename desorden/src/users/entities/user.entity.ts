@@ -15,14 +15,6 @@ export class User extends BaseEntity {
   @PrimaryColumn()
   id: string;
 
-  @IsEmail(
-    {
-      ignore_max_length: true,
-    },
-    {
-      message: DTOErrorMessage.emailFormat,
-    },
-  )
   @Column({ nullable: false, unique: true, type: 'text' })
   email: string;
 

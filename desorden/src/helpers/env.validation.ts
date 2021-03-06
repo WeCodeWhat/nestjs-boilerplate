@@ -23,3 +23,6 @@ export function validate(config: Record<string, unknown>) {
   }
   return validatedConfig;
 }
+
+export const isEnvironment = (env: Environment) =>
+  process.env.NODE_ENV.trim() == env;

@@ -1,5 +1,6 @@
-import { Environment, isEnvironment } from 'src/constants/Environment';
+import { Environment } from 'src/constants/Environment';
 import { getConnectionOptions, ConnectionOptions } from 'typeorm';
+import { isEnvironment } from './env.validation';
 
 const genORMOptions = async (): Promise<ConnectionOptions> => {
   let TypeORMConnOptions = await getConnectionOptions();

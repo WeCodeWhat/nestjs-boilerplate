@@ -10,7 +10,7 @@ export class CreateUserDto {
       message: DTOErrorMessage.emailFormat,
     },
   )
-  email: string;
+  readonly email: string;
 
   @IsString()
   @MinLength(5, {
@@ -19,5 +19,5 @@ export class CreateUserDto {
   @MaxLength(100, {
     message: DTOErrorMessage.passwordMaxLengthExceed,
   })
-  password: string;
+  readonly password: string;
 }
