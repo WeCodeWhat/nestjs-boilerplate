@@ -1,3 +1,5 @@
-## THE REPOSITORY OF MESS SYSTEM [LEARNING MATERIALS]
+## The NestJS boilerplate (Minimal -> Advanced)
+
+- desorden: TypeORM + NestJS + Redis
 
 ## @chungquantin
